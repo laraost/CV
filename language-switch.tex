@@ -1,0 +1,32 @@
+% Define \isEnglish to use English, define \isGerman to use German.
+% Using both at the same time is not allowed.
+%
+% Requires \usepackage{datetime2} to define a \monthname that doesn't screw up in combination with the otherlanguage environment.
+
+\newbool{langde}
+\newbool{langen}
+
+\newcommand{\monthname}[1]{#1}
+
+\ifdefined\isEnglish
+    \setbool{langen}{true}
+    \renewcommand{\monthname}[1]{\DTMenglishmonthname{#1}}
+    \ifdefined\isGerman
+        \errmessage{Can't have both English and German}
+    \fi
+\fi
+\ifdefined\isGerman
+    \renewcommand{\monthname}[1]{\DTMgermanmonthname{#1}}
+    \setboolean{langde}{true}
+\fi
+
+\newcommand{\en}[1]{%
+    \iflangen#1\fi
+}
+\newcommand{\de}[1]{%
+    \iflangde%
+        \begin{otherlanguage}{ngerman}%
+            #1
+        \end{otherlanguage}%
+    \fi%
+}

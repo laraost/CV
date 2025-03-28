@@ -1,0 +1,297 @@
+\usepackage{csquotes}
+\usepackage[main=english,ngerman]{babel}
+\usepackage[maxbibnames=99,
+            sorting=ydnt,
+            block=ragged,
+            backend=biber,
+            doi=true,
+            url=false]{biblatex}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fontawesome}
+\usepackage{datetime2}
+
+\RequirePackage{fontspec}
+\setmainfont{Source Serif Pro}
+\setsansfont{Source Sans Pro}
+
+\input{language-switch}
+
+\de{\title{Lebenslauf}}
+\en{\title{Resume}}
+\beforename{Dr.}
+\author{Lara Chiara Ost}
+\aftername{MSc ETH MSc}
+\de{
+    \date{\the\day.~\monthname{\month} \the\year}
+}
+\en{
+    \date{\monthname{\month} \the\day, \the\year}
+}
+
+\de{\addbibresource{publications-de.bib}}
+\en{\addbibresource{publications.bib}}
+\nocite{*}
+
+\newbibmacro{string+doi}[1]{%
+  \iffieldundef{doi}{\iffieldundef{url}{#1}{\href{\thefield{url}}{#1}}}{\href{http://dx.doi.org/\thefield{doi}}{#1}}}	
+\DeclareFieldFormat*{title}{\usebibmacro{string+doi}{\mkbibemph{#1}}}
+\newcommand{\nohttpurl}[1]{\href{http://#1}{\nolinkurl{#1}}}
+
+\begin{document}
+
+\maketitle
+
+\begin{linkblock}{3}
+\icontext{linkedin}{
+    \href{www.linkedin.com/in/lara-ost-032463136}{lara-ost-032463136}}
+\icontext{github}{\href{https://github.com/laraost}{laraost}}
+\end{linkblock}
+
+\de{\section*{Erfahrung}}
+\en{\section*{Experience}}
+
+\de{
+\bigcventry{\fromto{Oktober 2019}{März 2025}}
+{Prae-Doc Assistentin in der Forschungsgruppe Theory and Applications of Algorithms, Universität Wien}
+{
+    \begin{itemize}
+        \item Forschung zu dynamischen Algorithmen für Graphprobleme, topologische Datenanalyse und Differential Privacy
+        \item Implementierung und experimentelle Evaluierung von Algorithmen
+        \item Teil des Organisations-Teams des
+            \enquote{Symposium on Experimental Algorithms} 2024
+        \item Unterricht der Kurse
+            \enquote{Algorithms and Data Structures 2} und
+            \enquote{Advanced Algorithms};
+            Mitbetreuung von Bachelor- und Masterarbeiten
+    \end{itemize}
+}
+}
+\en{
+\bigcventry{\fromto{October 2019}{March 2025}}
+{Prae-Doc Assistant in the research group Theory and Applications of Algorithms, University of Vienna}
+{
+    \begin{itemize}
+        \item Researched dynamic algorithms for graph problems,
+            topological data analysis, differential privacy and trajectory analysis
+        \item Developed, optimized and benchmarked performance oriented implementations of algorithms in C++
+        \item Evaluated reproducibility of published results as part of the ALENEX 2025 Artifact Evaluation Committee;
+            acted as (sub-)reviewer for conferences (ALENEX, SODA, ESA, SEA, ACDA, SIROCCO)
+        \item Local organizer of the
+            \enquote{Symposium on Experimental Algorithms} 2024
+        \item Taught courses
+            \enquote{Algorithms and Data Structures 2} and
+            \enquote{Advanced Algorithms};
+            co-supervised a bachelor's thesis and master's theses
+    \end{itemize}
+}
+}
+
+\de{
+\cventry{\fromto{Oktober 2018}{Juni 2019}}{Tutorin für \enquote{Foundations of Computer Graphics}, Universität Wien}
+}
+\en{
+\cventry{\fromto{October 2018}{June 2019}}{Teaching assistant for \enquote{Foundations of Computer Graphics}, University of Vienna}
+}
+
+
+
+\de{\section*{Projekte}}
+\en{\section*{Projects}}
+
+\de{
+\projectblock{BananaPersist}{2025}{%
+    \nohttpurl{github.com/laraost/BananaPersist},
+    beschrieben in \cite{ost24.1,cultrera24}
+}{
+    Datenstruktur zur effizienten Berechnung des \enquote{Persistence Diagrams} von Zeitreihen.
+    Dies ist die erste Datenstruktur für das Problem, die Änderungen am Input zulässt und dabei das Diagramm effizient aktualisiert.
+    Ich habe die Datenstruktur mit-designed und anschließend in C++ implementiert.
+}
+}
+\en{
+\projectblock{BananaPersist}{2025}{%
+    \nohttpurl{github.com/laraost/BananaPersist},
+    described in \cite{ost24.1,cultrera24}
+}{
+    Data structure to maintain the persistence diagram of time series under changes to the input.
+    %This is the first data structure for this problem.
+    This work introduces the novel banana tree structure, which can be efficiently updated when the input is modified. 
+    I co-designed the data structure, implemented it in C++ and performed experiments to analyze its performance.
+}
+}
+
+\de{
+\projectblock{DyDJ-Match}{2023}{%
+    \nohttpurl{github.com/DJ-Match/DyDJ-Match},
+    beschrieben in \cite{hanauer22}  
+}
+{
+    Dynamische Algorithmen zur Berechnung von maximalen disjunkten Matchings in gewichteten Graphen.
+    Das Problem tritt in der Konfiguration von rekonfigurierbaren optischen Netzwerken auf.
+    Ich habe die Algorithmen mit-entworfen, in C++ implementiert und deren Performance evaluiert.
+}
+}
+\en{
+\projectblock{DyDJ-Match}{2023}{%
+    \nohttpurl{github.com/DJ-Match/DyDJ-Match},
+    described in \cite{hanauer22}  
+}
+{
+    Dynamic algorithms to compute maximum disjoint matchings in weighted graphs.
+    We are the first to study this problem in the dynamic setting, where inputs may change. 
+    This work is motivated by an application to optical networks in data centers.
+    I co-designed the algorithms, implemented them in C++ and evaluated their performance.
+}
+}
+
+\de{
+\projectblock{Beitrag zu KaHIP}{2020}{%
+    \nohttpurl{kahip.github.io}, beschrieben in \cite{ost21}
+}{
+    Algorithmus zur Berechnung von Knotenordnungen mit kleinem \enquote{Fill-In}, basierend auf Nested Dissection.
+    Ich habe den Algorithmus in C++ implementiert, optimiert, experimentell analysiert und in das bestehende KaHIP-Framework (Version 3.0) integriert.
+}
+}
+\en{
+\projectblock{Contribution to KaHIP}{2020}{%
+    \nohttpurl{kahip.github.io}, described in \cite{ost21}
+}{
+    I contributed an algorithm to compute node orderings with small fill-in, based on nested dissection.
+    This work incorporates reduction rules into nested dissection to improve the algorithm's performance in practice.
+    I implemented the algorithm in C++, analyzed it in extensive experiments and integrated it into the existing KaHIP-framework (version 3.0).
+}
+}
+
+\de{\section*{Ausbildung}}
+\en{\section*{Education}}
+
+\de{
+\bigcventry{\fromto{März 2020}{Februar 2025}}
+{Dr. techn. in Informatik, Universität Wien}
+{
+    Mitglied der \enquote{Vienna Graduate School on Computational Optimization} \\
+    Dissertation: \emph{\enquote{Engineering Efficient Algorithms for the Analysis of Dynamic Data}} \\
+    Betreuerinnen: Prof.~Monika Henzinger, Prof.~Kathrin Hanauer
+}
+}
+\en{
+\bigcventry{\fromto{March 2020}{February 2025}}
+{Dr. techn. in Computer Science, University of Vienna}
+{
+    Member of the \enquote{Vienna Graduate School on Computational Optimization} \\
+    Thesis: \emph{\enquote{Engineering Efficient Algorithms for the Analysis of Dynamic Data}} \\
+    Supervisors: Prof.~Monika Henzinger, Prof.~Kathrin Hanauer
+}
+}
+
+\de{
+\cventry{\fromto{März}{Juni 2023}}{
+    Forschungsaufenthalt, DTU Kopenhagen\\
+    Forschung zu Algorithmen für Subtrajectory Clustering
+}
+}
+\en{
+\cventry{\fromto{March}{June 2023}}{
+    Research stay, DTU Kopenhagen \\
+    Research on discrete subtrajectory clustering algorithms
+}
+}
+
+\de{
+\bigcventry{\fromto{Oktober 2017}{September 2019}}
+{MSc in Computational Science, Universität Wien, mit Auszeichnung bestanden}
+{
+    Masterarbeit: \emph{\enquote{Reduced Nested Dissection for Fill Reducing Node Orderings} \\}
+}
+}
+\en{
+\bigcventry{\fromto{October 2017}{September 2019}}
+{MSc in Computational Science, University of Vienna, pass with distinction}
+{
+    Master's thesis: \emph{\enquote{Reduced Nested Dissection for Fill Reducing Node Orderings} \\}
+}
+}
+
+\de{
+\bigcventry{\fromto{September 2015}{Mai 2016}}
+{MSc ETH in Chemie, ETH Zürich}
+{
+    Masterarbeit: \emph{\enquote{Prejudice-Free Exploration of Reaction Space with Quantum Chemical  Methods}} \\
+}
+}
+\en{
+\bigcventry{\fromto{September 2015}{May 2016}}
+{MSc ETH in Chemistry, ETH Zürich}
+{
+    Master's thesis: \emph{\enquote{Prejudice-Free Exploration of Reaction Space with Quantum Chemical  Methods}} \\
+}
+}
+
+\de{\cventry{Herbst 2014}{Auslandssemester, Universität Uppsala}}
+\en{\cventry{Fall 2014}{Exchange semester, Uppsala University}}
+
+\de{\cventry{\fromto{September 2012}{Mai 2015}}{BSc ETH in Chemie,
+    ETH Zürich}}
+\en{\cventry{\fromto{September 2012}{May 2015}}{BSc ETH in Chemistry,
+    ETH Zürich}}
+
+\de{
+\cventry{\fromto{Oktober 2011}{Juni 2012}}{Studium in klassischer Archäologie und Altgriechisch, Universität Tübingen}
+}
+\en{
+\cventry{\fromto{October 2011}{June 2012}}{Studies of classical archaeology and Greek philology, University of Tübingen
+}
+}
+
+\clearpage
+
+\de{\section*{Kenntnisse}}
+\en{\section*{Skills}}
+
+\de{\cventry{Sprachen}{Deutsch, Englisch,
+                       Großes Latinum, Graecum,
+                       Grundkenntnisse in Französisch, Spanisch und Schwedisch}}
+\en{\cventry{Languages}{German, English,
+                        basics in French, Spanish and Swedish,\\
+                        Großes Latinum (advanced proficiency certificate in Latin),\\
+                        Graecum (proficiency certificate in Ancient Greek)}}
+
+\de{
+\cventry{Programmiersprachen}{C++, R, Python, Rust, Java, SQL, Matlab, JavaScript, LaTeX}
+}
+\en{
+\cventry{Programming Languages}{C++, R, Python, Rust, Java, SQL, Matlab, JavaScript, LaTeX}
+}
+
+\de{
+\cventry{Technologien}{Linux, vim, git, cmake, meson}
+}
+\en{
+\cventry{Technologies}{Linux, vim, git, cmake, meson}
+}
+
+\de{\section*{Andere Aktivitäten}}
+\en{\section*{Other Activities}}
+
+\de{
+\cventry{September 2018}{Besuch der Summer School Deep Learning and Visual Data Analysis, Universität Wien}
+}
+\en{
+\cventry{September 2018}{Summer School Deep Learning and Visual Data Analysis,\\ University of Vienna}
+}
+
+\de{
+\cventry{2011}{Qualifikation als nebenberufliche Kirchenmusikerin mit D-Prüfung, \\
+    Evangelische Landeskirche Baden, Deutschland}
+}
+\en{
+\cventry{2011}{Qualification as part-time church musician with D-examination, \\
+    Protestant Church of Baden, Germany}
+}
+
+\de{\printbibliography[title=Publikationen]}
+\en{\printbibliography[title=Publications]}
+
+\label{lastpage}~
+
+\end{document}
